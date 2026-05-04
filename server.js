@@ -56,9 +56,6 @@ app.use(
       dbName: MONGODB_DATABASE,
       collectionName: "sessions",
       ttl: 60 * 60,
-      crypto: {
-        secret: MONGODB_SESSION_SECRET,
-      },
     }),
     cookie: {
       maxAge: 1000 * 60 * 60,
@@ -66,7 +63,7 @@ app.use(
       sameSite: "lax",
       secure: process.env.NODE_ENV === "production",
     },
-  })
+  }),
 );
 
 function escapeHtml(value) {
@@ -103,7 +100,7 @@ function messagePage(title, message, linkHref, linkText) {
       <h1>${escapeHtml(title)}</h1>
       <p>${escapeHtml(message)}</p>
       <p><a href="${linkHref}">${escapeHtml(linkText)}</a></p>
-    `
+    `,
   );
 }
 
@@ -176,8 +173,8 @@ app.get("/", (req, res) => {
           <h1>Hello, ${name}.</h1>
           <p><a class="button" href="/members">Go to Members Area</a></p>
           <p><a class="button" href="/logout">Logout</a></p>
-        `
-      )
+        `,
+      ),
     );
     return;
   }
@@ -189,8 +186,8 @@ app.get("/", (req, res) => {
         <h1>COMP 2537 Assignment 1</h1>
         <p><a class="button" href="/signup">Sign up</a></p>
         <p><a class="button" href="/login">Log in</a></p>
-      `
-    )
+      `,
+    ),
   );
 });
 
@@ -209,8 +206,8 @@ app.get("/signup", (req, res) => {
         </form>
 
         <p><a href="/">Back to home</a></p>
-      `
-    )
+      `,
+    ),
   );
 });
 
@@ -228,8 +225,8 @@ app.post("/signup", async (req, res) => {
           "Sign up error",
           validationResult.error.details[0].message,
           "/signup",
-          "Try again"
-        )
+          "Try again",
+        ),
       );
     return;
   }
@@ -247,8 +244,8 @@ app.post("/signup", async (req, res) => {
             "Sign up error",
             "A user with this email already exists.",
             "/signup",
-            "Try again"
-          )
+            "Try again",
+          ),
         );
       return;
     }
@@ -269,7 +266,14 @@ app.post("/signup", async (req, res) => {
     console.error(err);
     res
       .status(500)
-      .send(messagePage("Server error", "Could not create user.", "/signup", "Try again"));
+      .send(
+        messagePage(
+          "Server error",
+          "Could not create user.",
+          "/signup",
+          "Try again",
+        ),
+      );
   }
 });
 
@@ -287,8 +291,8 @@ app.get("/login", (req, res) => {
         </form>
 
         <p><a href="/">Back to home</a></p>
-      `
-    )
+      `,
+    ),
   );
 });
 
@@ -306,8 +310,8 @@ app.post("/login", async (req, res) => {
           "Login error",
           validationResult.error.details[0].message,
           "/login",
-          "Try again"
-        )
+          "Try again",
+        ),
       );
     return;
   }
@@ -325,8 +329,8 @@ app.post("/login", async (req, res) => {
             "Login error",
             "Invalid email/password combination.",
             "/login",
-            "Try again"
-          )
+            "Try again",
+          ),
         );
       return;
     }
@@ -336,7 +340,14 @@ app.post("/login", async (req, res) => {
     if (!passwordMatches) {
       res
         .status(401)
-        .send(messagePage("Login error", "Invalid password.", "/login", "Try again"));
+        .send(
+          messagePage(
+            "Login error",
+            "Invalid password.",
+            "/login",
+            "Try again",
+          ),
+        );
       return;
     }
 
@@ -350,7 +361,9 @@ app.post("/login", async (req, res) => {
     console.error(err);
     res
       .status(500)
-      .send(messagePage("Server error", "Could not log in.", "/login", "Try again"));
+      .send(
+        messagePage("Server error", "Could not log in.", "/login", "Try again"),
+      );
   }
 });
 
@@ -373,8 +386,8 @@ app.get("/members", (req, res) => {
         <img class="member-image" src="${randomImage}" alt="Random member image">
 
         <p><a class="button" href="/logout">Sign out</a></p>
-      `
-    )
+      `,
+    ),
   );
 });
 
@@ -382,7 +395,9 @@ app.get("/logout", (req, res) => {
   req.session.destroy((err) => {
     if (err) {
       console.error(err);
-      res.status(500).send(messagePage("Logout error", "Could not log out.", "/", "Home"));
+      res
+        .status(500)
+        .send(messagePage("Logout error", "Could not log out.", "/", "Home"));
       return;
     }
 
@@ -399,8 +414,8 @@ app.use((req, res) => {
         <h1>Page not found - 404</h1>
         <p>The page you requested does not exist.</p>
         <p><a href="/">Back to home</a></p>
-      `
-    )
+      `,
+    ),
   );
 });
 
