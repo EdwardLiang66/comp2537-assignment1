@@ -58,9 +58,6 @@ app.use(
       dbName: MONGODB_DATABASE,
       collectionName: "sessions",
       ttl: 60 * 60,
-      crypto: {
-        secret: process.env.MONGODB_SESSION_SECRET,
-      },
     }),
     cookie: {
       maxAge: 1000 * 60 * 60,
