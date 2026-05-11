@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: comp2537-assignment2
+    env: node
+    buildCommand: npm install
+    startCommand: npm start
+    autoDeploy: true

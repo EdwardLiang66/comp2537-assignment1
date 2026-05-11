@@ -1,0 +1,55 @@
+<%- include("partials/header") %>
+
+<div class="d-flex flex-column flex-md-row justify-content-between align-items-md-end gap-3 mb-4">
+  <div>
+    <p class="text-uppercase text-primary fw-semibold small mb-2">Admin</p>
+    <h1 class="h2 fw-bold mb-1">User management</h1>
+    <p class="text-secondary mb-0">Promote and demote users between regular and admin accounts.</p>
+  </div>
+  <a class="btn btn-outline-dark" href="/members">Members page</a>
+</div>
+
+<% if (message) { %>
+  <div class="alert alert-success" role="alert"><%= message %></div>
+<% } %>
+
+<div class="table-responsive bg-white border rounded shadow-sm">
+  <table class="table align-middle mb-0">
+    <thead class="table-light">
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Type</th>
+        <th scope="col" class="text-end">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% users.forEach((user) => { %>
+        <tr>
+          <td><%= user.name %></td>
+          <td><%= user.email %></td>
+          <td>
+            <% if (user.isAdmin) { %>
+              <span class="badge text-bg-primary">Admin</span>
+            <% } else { %>
+              <span class="badge text-bg-secondary">User</span>
+            <% } %>
+          </td>
+          <td class="text-end">
+            <form method="POST" action="/admin/users/<%= user._id.toString() %>/role" class="d-inline">
+              <% if (user.isAdmin) { %>
+                <input type="hidden" name="action" value="demote">
+                <button class="btn btn-outline-danger btn-sm" type="submit">Demote</button>
+              <% } else { %>
+                <input type="hidden" name="action" value="promote">
+                <button class="btn btn-outline-primary btn-sm" type="submit">Promote</button>
+              <% } %>
+            </form>
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</div>
+
+<%- include("partials/footer") %>

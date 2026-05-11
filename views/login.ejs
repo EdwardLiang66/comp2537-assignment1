@@ -1,0 +1,30 @@
+<%- include("partials/header") %>
+
+<div class="row justify-content-center">
+  <div class="col-md-8 col-lg-6">
+    <div class="bg-white border rounded shadow-sm p-4">
+      <h1 class="h2 fw-bold mb-3">Log in</h1>
+
+      <% if (error) { %>
+        <div class="alert alert-danger" role="alert"><%= error %></div>
+      <% } %>
+
+      <form method="POST" action="/login" class="vstack gap-3">
+        <div>
+          <label class="form-label" for="email">Email</label>
+          <input class="form-control" id="email" name="email" type="email" value="<%= values.email || '' %>" required>
+        </div>
+        <div>
+          <label class="form-label" for="password">Password</label>
+          <input class="form-control" id="password" name="password" type="password" required>
+        </div>
+        <div class="d-flex gap-2">
+          <button class="btn btn-primary" type="submit">Log in</button>
+          <a class="btn btn-outline-secondary" href="/">Cancel</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<%- include("partials/footer") %>

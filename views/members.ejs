@@ -1,0 +1,22 @@
+<%- include("partials/header") %>
+
+<div class="d-flex flex-column flex-md-row justify-content-between align-items-md-end gap-3 mb-4">
+  <div>
+    <p class="text-uppercase text-primary fw-semibold small mb-2">Members</p>
+    <h1 class="h2 fw-bold mb-1">Hello, <%= currentUser.name %>.</h1>
+    <p class="text-secondary mb-0">Here are the three member images in a responsive grid.</p>
+  </div>
+  <a class="btn btn-outline-dark" href="/logout">Sign out</a>
+</div>
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+  <% images.forEach((image) => { %>
+    <div class="col">
+      <div class="card h-100 shadow-sm">
+        <img class="member-image card-img-top" src="<%= image.src %>" alt="<%= image.alt %>">
+      </div>
+    </div>
+  <% }) %>
+</div>
+
+<%- include("partials/footer") %>

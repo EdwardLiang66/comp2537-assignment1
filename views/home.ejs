@@ -1,0 +1,40 @@
+<%- include("partials/header") %>
+
+<section class="row align-items-center g-4">
+  <div class="col-lg-7">
+    <% if (currentUser) { %>
+      <p class="text-uppercase text-primary fw-semibold small mb-2">Welcome back</p>
+      <h1 class="display-5 fw-bold mb-3">Hello, <%= currentUser.name %>.</h1>
+      <p class="lead text-secondary mb-4">Visit the members gallery or open the admin area to manage user roles.</p>
+      <div class="d-flex flex-wrap gap-2">
+        <a class="btn btn-primary" href="/members">Members area</a>
+        <a class="btn btn-outline-dark" href="/admin">Admin page</a>
+      </div>
+    <% } else { %>
+      <p class="text-uppercase text-primary fw-semibold small mb-2">COMP 2537</p>
+      <h1 class="display-5 fw-bold mb-3">Assignment 2 user portal</h1>
+      <p class="lead text-secondary mb-4">Create an account or log in with the demo users to view protected pages.</p>
+      <div class="d-flex flex-wrap gap-2">
+        <a class="btn btn-primary" href="/login">Log in</a>
+        <a class="btn btn-outline-dark" href="/signup">Create account</a>
+      </div>
+    <% } %>
+  </div>
+  <div class="col-lg-5">
+    <div class="p-4 bg-white border rounded shadow-sm">
+      <h2 class="h5 fw-bold mb-3">Demo accounts</h2>
+      <div class="vstack gap-3">
+        <div>
+          <div class="fw-semibold">Admin</div>
+          <div class="text-secondary">admin@email.com / Password123!</div>
+        </div>
+        <div>
+          <div class="fw-semibold">Regular user</div>
+          <div class="text-secondary">user@email.com / Password123!</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<%- include("partials/footer") %>
