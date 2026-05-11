@@ -21,4 +21,4 @@ Criteria
 
 Hosted Website link: https://comp2537-assignment1-1-d0yq.onrender.com
 GitHub repository link: https://github.com/EdwardLiang66/comp2537-assignment1
-YouTube Demo link:
+YouTube Demo link: https://youtu.be/zmo0G7qhcFY
