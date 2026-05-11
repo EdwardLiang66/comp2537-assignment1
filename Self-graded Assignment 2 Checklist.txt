@@ -15,10 +15,10 @@ Criteria
 [x] Common headers and footers are shared across all pages
 [x] Code used within loop is templated using EJS (ex: list of users in admin page)
 [x] The members page has a responsive grid of 3 images.
-[ ] Your site is hosted on Render or other hosting site.
+[x] Your site is hosted on Render or other hosting site.
 
-45/50
+50/50
 
-Hosted Website link:
-GitHub repository link:
+Hosted Website link: https://comp2537-assignment1-1-d0yq.onrender.com
+GitHub repository link: https://github.com/EdwardLiang66/comp2537-assignment1
 YouTube Demo link:
